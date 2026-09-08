@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Squarespace implementation plan · Little Dog Rescue review</title><link rel="stylesheet" href="style.css"><style>.report{max-width:1000px;margin:auto;padding:40px 5vw 90px}.report h1{font-size:clamp(38px,5vw,60px)}.report h2{font-size:32px;margin-top:48px}.report h3{font-size:23px;margin-top:30px}.report p,.report li{font-size:16px}.report p{max-width:none}.report a,.report code{overflow-wrap:anywhere}.report li{margin:9px 0}.report nav{display:flex;gap:25px;flex-wrap:wrap}.report pre{white-space:pre-wrap}@media print{.report{max-width:none;padding:0}.report nav{display:none}h2,h3{break-after:avoid}a{color:inherit}}</style></head><body><main class="report"><nav aria-label="Review resources"><a href="index.html">← All concepts</a><a href="audit.html">Audit</a><a href="implementation.html">Implementation plan</a></nav><h1>Squarespace implementation handoff</h1>
+<h2>Decision</h2>
+<p>Retain Squarespace 7.1, the existing domain, Shelterluv, animal records, applications and donation services. These browser concepts are a specification and review tool, not an installable theme ZIP. Translate the selected direction into the existing Squarespace editor.</p>
+<h2>Three design systems</h2>
+<ul>
+<li><strong>01 Clear &amp; Kind:</strong> background <code>#f5faf9</code>, text <code>#173d40</code>, primary <code>#176d70</code>, soft surface <code>#e2eeeb</code>; clean sans-serif typography, 16px cards, pill buttons, right-side rectangular hero photo. Closest to the existing teal brand.</li>
+<li><strong>02 A Little Home:</strong> background <code>#fbf7ef</code>, text <code>#42362d</code>, primary <code>#954727</code>, soft surface <code>#eee5d7</code>; serif headings, restrained square-ish buttons, left-side arched photo, a more personal/editorial feel.</li>
+<li><strong>03 Northwest Companion:</strong> background <code>#f6f6ed</code>, text <code>#1e3d31</code>, primary <code>#355b3b</code>, hero action <code>#e2e6ac</code>; forest-green hero, serif headlines, minimal corner rounding, quieter editorial composition.</li>
+</ul>
+<p>Fonts shown in the previews use system Arial and Georgia rather than adding hosted dependencies. Confirm equivalent choices in the rescue's Site Styles and available font library. The typographic heart/wordmark is an exploratory placeholder, not a recommendation to discard the existing logo. Obtain the rescue's original approved logo file before implementation.</p>
+<h2>Editor mapping</h2>
+<p><strong>Header:</strong> existing Squarespace header controls and navigation. Keep the logo and existing URL destinations; prioritize Meet Our Dogs and make Donate/Support consistent. Prototype menus demonstrate information hierarchy, not the final native header code.</p>
+<p><strong>Homepage hero:</strong> a Fluid Engine section with native text, image and two button blocks. Image shape/mask can approximate the arch; if the current editor does not offer the needed shape, use a small scoped CSS rule, not a second page-building system. Create a separate deliberate mobile arrangement.</p>
+<p><strong>Adoption stages:</strong> three native content columns on home; a fuller ordered sequence on the adoption page. Accordion block for FAQs. Copy is based on the published process but still needs rescue approval.</p>
+<p><strong>Dog directory:</strong> retain the existing Shelterluv code block, GID and wrapper ID. Remove unnecessary surrounding page height. Give the frame an accessible title and full available width. Use the supported vendor resize script rather than guessing a fixed document height. Confirm settings in Shelterluv before changing column/filter configuration. The one-column setting may be intentional; verify desktop needs first.</p>
+<p><strong>Featured dog story:</strong> optional manual Squarespace editorial page using native image/text blocks. A clear date/current-listing link prevents a stale story from pretending to be an available-dogs database. If the team cannot maintain these, omit this optional feature and use a general rescue story instead.</p>
+<p><strong>Contact:</strong> retain the current Squarespace form and its configured storage/routing. Add visible email and adoption-routing help. The prototypes omit form submission deliberately; this is not a recommendation to remove the real form. Verify newsletter consent defaults and accessible labels before publishing.</p>
+<p><strong>Foster/volunteer/support:</strong> keep their existing pages and destinations. Apply the selected type scale, spacing, imagery and shorter action-first summaries. The preview's combined ways-to-help screen is a navigation aid, not a mandate to delete existing detail pages.</p>
+<p><strong>Footer:</strong> canonical contact email, staff-confirmed address purpose, policy pages with approved content, consistent support links, corrected credit/copyright wording.</p>
+<h2>Keep / change / do not promise</h2>
+<p>Keep animal entry, status changes, photos and applications in Shelterluv. Keep site editing in Squarespace. Keep existing donation checkout until separately reviewed.</p>
+<p>Change native layout, color, typography, image treatment, surrounding directory space, information hierarchy, labels, policy content and broken internal links.</p>
+<p>Do not promise a fully branded Shelterluv gallery, custom filters, native Squarespace dog share metadata or automatic featured-story synchronization through site CSS. The frame is cross-origin. A custom API integration would add credential management, a separate service, data freshness rules and support burden; excluded from this design-only scope.</p>
+<h2>Safe implementation sequence</h2>
+<ol>
+<li>Rescue chooses a concept and approves its logo, photo use and content.</li>
+<li>Request an appropriate collaborator invitation via the platforms' normal account flow, not shared passwords.</li>
+<li>Record current Site Styles, custom CSS and code injections, navigation, embed snippet, page URLs and form/storage settings. Use the owner's existing backup/export practice; save screenshots and copies of custom code. Squarespace duplication is not a full backup of every integration.</li>
+<li>Duplicate relevant pages and hide drafts from navigation/search; password-protect a review surface where supported. “Not Linked” and noindex alone are not privacy controls. Avoid changing global Site Styles on the live site while drafting; use a controlled preview or draft-scoped styles until the final cutover.</li>
+<li>Build the selected native page layout. Keep the original Shelterluv wrapper ID during final replacement so existing deep links remain compatible. Do not include two identical wrapper IDs on one page.</li>
+<li>Validate links and mobile breakpoints; check the exact iPhone/Safari screenshot issue; test frame loading, gallery, filters, name search and back/deep-link behavior.</li>
+<li>Coordinate clearly identified test applications, contact messages and donations with the rescue. Verify inbox delivery, acknowledgments and receipts. None were submitted for these prototypes.</li>
+<li>Obtain rescue approval of concrete final pages before any production cutover. Preserve live routes and explicit redirect mappings. Keep rollback copies and reverse style changes if needed.</li>
+</ol>
+<h2>Acceptance criteria</h2>
+<ul>
+<li>Dog directory, application/process, general contact and donate routes are easy to find on a phone.</li>
+<li>No horizontal scrolling or distorted images at 320, 390, 768 and 1440 CSS pixels; actual iPhone Safari check required.</li>
+<li>One meaningful main heading, logical headings, keyboard reachability, visible focus, usable touch targets and verified text contrast. Native accessibility issues addressed; overlay presence is not a pass.</li>
+<li>Shelterluv retains current data, functional filters, accessible photo controls and existing dog links.</li>
+<li>Contact and application confirmation/delivery verified with staff; payment receipt verified through an agreed test.</li>
+<li>Privacy, terms and accessibility pages have accurate approved contents. No unsupported rescue statistics, medical promises or fee claims.</li>
+<li>Known broken donation path fixed; stale URLs have intentional treatment; sitemap reviewed.</li>
+<li>Staff can update normal content without editing application code. No new animal database, paid integration or migration required.</li>
+</ul>
+<h2>Estimate, not a quote</h2>
+<p>A style/layout refresh with approved copy could take roughly 3–6 implementation days plus staff review. Contact/policy clarification, Safari/vendor debugging and checkout testing can extend that. The actual subscription plan, editor state, integrations and approval turnaround have not been inspected administratively. Work should be scheduled after the rescue selects a direction, not before.</p>
+<h2>Prototype verification and review</h2>
+<p>Plain HTML, CSS and browser JavaScript; no framework/build system, no backend, no tracking added by the prototype. Three concepts × six page types × two viewport sizes were checked in Chromium. Initial 36 checks found no horizontal overflow, broken loaded images or JavaScript exceptions; navigation, photo changes and exit-dialog open/Escape close worked. The existing Shelterluv frame loaded in every directory variant.</p>
+<p>Screenshot inspection identified a too-tall hero image caused by HTML dimension attributes; CSS height handling was corrected, then relevant visual checks were repeated. Test scripts and detailed evidence are retained locally, not published with private workspace information. Hosted smoke results are recorded separately after deployment. Actual iPhone/Safari, full screen-reader conformance, native Squarespace installation and real form/payment delivery remain unverified.</p>
+<p>Five-axis review: URL parameters are allowlisted before rendering; only fixed trusted template content enters HTML; no submitted user data or credentials are handled; official handoffs are labeled; vendor code loads only on directory pages; all dog-source images are tracked in asset provenance. Preview code is intentionally separate from production. A manual featured story is explicitly labeled and not silently sold as an automatic API integration.</p>
+<h2>Sharing</h2>
+<p>The review hub offers all three concepts, audit and implementation plan. It adds no feedback collection; recipients can send their preferences to the person sharing it. The pages contain noindex metadata, but hosting is not private or password-protected. Shelterluv and the hosting provider may operate their own logging/services. Do not describe the preview as collecting no data at all.</p>
+</main></body></html>
